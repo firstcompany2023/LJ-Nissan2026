@@ -1229,8 +1229,31 @@ header .mob-menu {
    ====================================================== */
 @media screen and (max-width: 1199px) {
 
+    /* --- Window Scroll --- */
+	html, body {
+        overflow-y: auto;
+        height: auto;
+    }
+	.panel,
+	.swiper.swiper-v,
+    .swiper-v .swiper-wrapper-v {
+        overflow-y: visible; 
+        height: auto;
+        min-height: 100%;
+    }
+    .banner-info, .tvc-info, .kicks-info, .sentra-info, .price-info {
+        min-height: 100vh;
+    }
+    .banner-info .banner-box{
+        height: 100vh;
+    }
+    .banner-info .banner-box img.banner-pc,
+    .banner-info .banner-box img.banner-m { 
+        /* min-height: 100vh;
+        width: auto; */
+    }
+
     /* --- Swiper --- */
-    .swiper-v .swiper-wrapper-v { overflow-y: auto; }
     .swiper-v .swiper-wrapper-v .mob-slide { min-height: 100%; height: auto; }
     .swiper-v .swiper-wrapper-v .mob-slide-banner { height: 100%; }
 

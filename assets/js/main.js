@@ -36,10 +36,9 @@ function handleNavKicksClick(e) {
   if (isDesktop) {
     verticalSwiper.slideTo(2);
   } else {
-    const panelEl = document.querySelector('.swiper-wrapper-v');
     const kicksSlide = document.querySelectorAll('.swiper-wrapper-v > .swiper-slide')[2];
-    if (panelEl && kicksSlide) {
-      panelEl.scrollTo({ top: kicksSlide.offsetTop, behavior: 'smooth' });
+    if (kicksSlide) {
+      window.scrollTo({ top: kicksSlide.offsetTop, behavior: 'smooth' });
     }
   }
 }
@@ -50,10 +49,9 @@ function handleNavSentraClick(e) {
   if (isDesktop) {
     verticalSwiper.slideTo(3);
   } else {
-    const panelEl = document.querySelector('.swiper-wrapper-v');
     const sentraSlide = document.querySelectorAll('.swiper-wrapper-v > .swiper-slide')[3];
-    if (panelEl && sentraSlide) {
-      panelEl.scrollTo({ top: sentraSlide.offsetTop, behavior: 'smooth' });
+    if (sentraSlide) {
+      window.scrollTo({ top: sentraSlide.offsetTop, behavior: 'smooth' });
     }
   }
 }
@@ -62,22 +60,16 @@ function handleGoToTopClick() {
   if (isDesktop && verticalSwiper) {
     verticalSwiper.slideTo(0);
   } else {
-    const panelEl = document.querySelector('.swiper-wrapper-v');
-    if (panelEl) {
-      panelEl.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
 
 
 
 function handleMobilePanelScroll() {
-  const panelEl = document.querySelector('.swiper-wrapper-v');
   const headerEl = document.querySelector('header');
   const goToTopBtn = document.querySelector('.go-to-top-btn');
-  const scrollTop = panelEl ? panelEl.scrollTop : window.scrollY;
+  const scrollTop = window.scrollY;
   const scrollingDown = scrollTop > mobileLastScrollTop;
   mobileLastScrollTop = scrollTop;
 
@@ -89,24 +81,22 @@ function handleMobilePanelScroll() {
     if (goToTopBtn) goToTopBtn.classList.remove('show');
   }
 
-  if (panelEl) {
-    const slides = panelEl.querySelectorAll(':scope > .swiper-slide');
-    const panelHeight = panelEl.clientHeight;
+  const slides = document.querySelectorAll('.swiper-wrapper-v > .swiper-slide');
+  const panelHeight = window.innerHeight;
     
-    slides.forEach((slide, i) => {
-      const slideTop = slide.offsetTop - scrollTop;
-      const slideRatio = slideTop / panelHeight;      
-      if (scrollingDown) {
-        if (slideRatio >= 0.9 && slideRatio <= 1.0){
-          triggerFadeInElements(slides[i]);
-        };
-      } else {
-        if (slideRatio >= 0.0 && slideRatio <= 0.1){        
-          triggerFadeInElements(slides[i-1]);
-        }
+  slides.forEach((slide, i) => {
+    const slideTop = slide.offsetTop - scrollTop;
+    const slideRatio = slideTop / panelHeight;      
+    if (scrollingDown) {
+      if (slideRatio >= 0.9 && slideRatio <= 1.0){
+        triggerFadeInElements(slides[i]);
+      };
+    } else {
+      if (slideRatio >= 0.0 && slideRatio <= 0.1){        
+        triggerFadeInElements(slides[i-1]);
       }
-    });
-  }
+    }
+  });
 }
 
 function handleWheel(e) {
@@ -146,16 +136,12 @@ function bindMobileScroll() {
   mobileCurrentSlideIndex = -1;
   mobileLastScrollTop = 0;
   triggeredSlides.clear();
-  const panelEl = document.querySelector('.swiper-wrapper-v');
-  const target = panelEl || window;
-  target.removeEventListener('scroll', handleMobilePanelScroll);
-  target.addEventListener('scroll', handleMobilePanelScroll);
+  window.removeEventListener('scroll', handleMobilePanelScroll);
+  window.addEventListener('scroll', handleMobilePanelScroll);
 }
 
 function unbindMobileScroll() {
-  const panelEl = document.querySelector('.swiper-wrapper-v');
-  const target = panelEl || window;
-  target.removeEventListener('scroll', handleMobilePanelScroll);
+  window.removeEventListener('scroll', handleMobilePanelScroll);
 }
 
 // =============================================
