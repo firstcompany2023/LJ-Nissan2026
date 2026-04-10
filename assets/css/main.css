@@ -1791,7 +1791,7 @@ header .mob-menu {
     }
     .tvc-info .tvc-kicks-img {
         position: relative;
-        margin: 20px auto 0;
+        margin: 40px auto 0;
         border: 10px solid #F6E9EB;
         box-shadow: 0px 0px 25px 0px #0000001A;
         width: 300px;
@@ -1803,7 +1803,7 @@ header .mob-menu {
     }
     .tvc-info .tvc-xtrail-img {
         position: relative;
-        margin: 20px auto 0;
+        margin: 40px auto 0;
         border: 10px solid #F6E9EB;
         box-shadow: 0px 0px 25px 0px #0000001A;
         width: 300px;
@@ -1815,7 +1815,7 @@ header .mob-menu {
     }
     .tvc-info .tvc-sentra-img {
         position: relative;
-        margin: 20px auto 0;
+        margin: 40px auto 0;
         border: 10px solid #E9EEF6;
         box-shadow: 0px 0px 25px 0px #0000001A;
         width: 300px;
@@ -1931,6 +1931,12 @@ header .mob-menu {
         margin: auto;
     }
     .price-info .item-colum { flex-direction: column; }
+
+    .price-info .reserve-btn {
+        margin: 20px 0 60px;
+        width: 300px;
+        height: 100px;
+    }
 
     /* --- Utility Buttons --- */
     .mob-menu-btn  { width: 45px; height: 45px; }
