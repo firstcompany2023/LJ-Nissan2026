@@ -30,13 +30,27 @@ function handleLandscapeChange() {
   });
 }
 
-function handleNavKicksClick(e) {
+
+function handleNavXtrailClick(e) {
   e.preventDefault();
   e.stopPropagation();
   if (isDesktop) {
     verticalSwiper.slideTo(2);
   } else {
-    const kicksSlide = document.querySelectorAll('.swiper-wrapper-v > .swiper-slide')[2];
+    const xtrailSlide = document.querySelectorAll('.swiper-wrapper-v > .swiper-slide')[2];
+    if (xtrailSlide) {
+      window.scrollTo({ top: xtrailSlide.offsetTop, behavior: 'smooth' });
+    }
+  }
+}
+
+function handleNavKicksClick(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  if (isDesktop) {
+    verticalSwiper.slideTo(3);
+  } else {
+    const kicksSlide = document.querySelectorAll('.swiper-wrapper-v > .swiper-slide')[3];
     if (kicksSlide) {
       window.scrollTo({ top: kicksSlide.offsetTop, behavior: 'smooth' });
     }
@@ -47,9 +61,9 @@ function handleNavSentraClick(e) {
   e.preventDefault();
   e.stopPropagation();
   if (isDesktop) {
-    verticalSwiper.slideTo(3);
+    verticalSwiper.slideTo(4);
   } else {
-    const sentraSlide = document.querySelectorAll('.swiper-wrapper-v > .swiper-slide')[3];
+    const sentraSlide = document.querySelectorAll('.swiper-wrapper-v > .swiper-slide')[4];
     if (sentraSlide) {
       window.scrollTo({ top: sentraSlide.offsetTop, behavior: 'smooth' });
     }
@@ -117,6 +131,10 @@ function bindNavButtons() {
   document.querySelectorAll('.nav-kicks-btn').forEach((btn) => {
     btn.removeEventListener('click', handleNavKicksClick);
     btn.addEventListener('click', handleNavKicksClick);
+  });
+  document.querySelectorAll('.nav-xtrail-btn').forEach((btn) => {
+    btn.removeEventListener('click', handleNavXtrailClick);
+    btn.addEventListener('click', handleNavXtrailClick);
   });
   document.querySelectorAll('.nav-sentra-btn').forEach((btn) => {
     btn.removeEventListener('click', handleNavSentraClick);
@@ -211,15 +229,18 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.swiper-h').forEach((swiperEl) => {
     const isKicks  = swiperEl.classList.contains('KICKS');
     const isSentra = swiperEl.classList.contains('SENTRA');
-    const isKicksOrSentra = isKicks || isSentra;
-    const paginationSetting = isKicksOrSentra
+    const isXtrail = swiperEl.classList.contains('XTRAIL');
+    const isKicksOrSentraOrXtrail = isKicks || isSentra || isXtrail;
+    const paginationSetting = isKicksOrSentraOrXtrail
       ? {
           el: swiperEl.querySelector('.swiper-pagination'),
           clickable: true,
           renderBullet: (index, className) => {
             const trackingClass = isSentra
               ? `US_N_202603_brand_sp_usp2_${index + 1}`
-              : `US_N_202603_brand_sp_usp1_${index + 1}`;
+              : isKicks
+              ? `US_N_202603_brand_sp_usp1_${index + 1}`
+              : `US_N_202603_brand_sp_usp3_${index + 1}`;
             return `<span class="${className} custom-bullet ${trackingClass}">${index + 1}</span>`;
           },
         }
@@ -264,7 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (mobMenuBtn) mobMenuBtn.addEventListener('click', openMobMenu);
   if (mobMenuClose) mobMenuClose.addEventListener('click', closeMobMenu);
 
-  document.querySelectorAll('.mob-nav-kicks-btn, .mob-nav-sentra-btn').forEach((btn) => {
+  document.querySelectorAll('.mob-nav-kicks-btn, .mob-nav-sentra-btn, .mob-nav-xtrail-btn').forEach((btn) => {
     btn.addEventListener('click', closeMobMenu);
   });
 
