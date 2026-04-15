@@ -618,6 +618,7 @@ header .mob-menu {
 .tvc-info .tvc-info-column {
     width: 100%;
     position: relative;
+    z-index: 1;
 }
 
 .tvc-info .tvc-info-column .tvc-kicks-title {
@@ -697,7 +698,7 @@ header .mob-menu {
     height: 0;
     padding-bottom: 50%;
     overflow: hidden;
-    background-image: url('../img/tvc/YT sakura 2.jpg');
+    background-image: url('../img/tvc/YT sakura 3.jpg');
     background-position: center;
     background-size: cover;
 }
@@ -732,6 +733,10 @@ header .mob-menu {
     position: absolute;
     bottom: 17%;
     left: 15%;
+}
+
+.tvc-info .tvc-info-column:nth-of-type(2) .play-box .play-btn {
+    left: 38%;
 }
 
 .tvc-info .tvc-info-column:nth-of-type(3) .play-box .play-btn {
@@ -1809,7 +1814,7 @@ header .mob-menu {
         width: 300px;
         height: 162px;
         overflow: hidden;
-        background-image: url('../img/tvc/YT sakura 2.jpg');
+        background-image: url('../img/tvc/YT sakura 3.jpg');
         background-position: center;
         background-size: 100%;
     }
