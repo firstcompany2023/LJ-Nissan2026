@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
               ? `US_N_202603_brand_sp_usp2_${index + 1}`
               : isKicks
               ? `US_N_202603_brand_sp_usp1_${index + 1}`
-              : `US_N_202603_brand_sp_usp3_${index + 1}`;
+              : `US_N_202604_brand_sp_usp3_${index + 1}`;
             return `<span class="${className} custom-bullet ${trackingClass}">${index + 1}</span>`;
           },
         }
